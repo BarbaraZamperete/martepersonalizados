@@ -1,0 +1,8 @@
+.menu{
+    background-color: red;
+    max-width: 1080px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-around;
+}
