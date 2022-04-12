@@ -36,8 +36,6 @@ header .title{
 footer{
     width: 100%;
     height: 50px;
-    position: absolute;
-    bottom: -200px;
     background-image: url("../assets/galaxy-bg2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -83,7 +81,4 @@ footer .contato-title{
         margin-right: 10px;
     }
     /*FOOTER*/
-    footer{
-        bottom: 0;
-    }
 }
