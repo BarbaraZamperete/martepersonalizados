@@ -5,7 +5,7 @@
   "main": "index.js",
   "engines": {
     "node": "16.8.0"
-    },
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
-    "sequelize": "^6.17.0"
+    "sequelize": "^6.18.0"
   }
 }
