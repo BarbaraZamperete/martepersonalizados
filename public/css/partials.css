@@ -1,11 +1,5 @@
-*{
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
-}
-body{
-    margin: 0;
-    padding: 0;
-}
+
+/*########### HEADER #################*/
 
 header{
     background-image: url("../assets/galaxy-bg2.jpg");
@@ -21,12 +15,14 @@ header{
     justify-content: center;
     align-items: center;
     
-    border-bottom: 4px solid #DDAA59;
+    border-bottom: 2px solid #000000;
 }
 header span {
     background-image: url("../assets/logo_PNG.png");
     /* background-image: url("../assets/logo.jpeg"); */
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 200px;
     height: 200px;
 }
@@ -34,4 +30,60 @@ header .title{
     color: #DDAA59 ;
     text-shadow: 5px 5px 5px black;
     font-size: 40px;
+}
+
+/*########### FOOTER #################*/
+footer{
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: -200px;
+    background-image: url("../assets/galaxy-bg2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+footer .contato{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+footer .icone-contato{
+    max-width: 30px;
+    max-height: 30px;
+    margin-right: 8px;
+}
+
+footer .contato-title{
+    color: white;
+    
+}
+
+
+
+
+
+
+/*MOBILE CONFIG*/
+
+@media only screen and (max-width: 600px){
+    /*HEADER*/
+    header{
+        justify-content: space-between;
+        border-bottom: 1px solid #000000;
+    }
+    header .title{
+        font-size: 30px;
+        margin-right: 10px;
+    }
+    /*FOOTER*/
+    footer{
+        bottom: 0;
+    }
 }
