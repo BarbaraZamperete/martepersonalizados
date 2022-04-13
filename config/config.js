@@ -16,10 +16,6 @@ module.exports = {
     dialect: "mysql"
   },
   production: {
-    username: "bcdedbaf60a536",
-    password: "56a574df",
-    database: "heroku_3d7a3807b9b47ee",
-    host: "us-cdbr-east-05.cleardb.net",
-    dialect: "mysql"
+    use_env_variable: process.env.DATABASE_URL
   }
 }
