@@ -1,14 +1,15 @@
 ## O que está sendo feito
 
 ## O que falta fazer
-- adicionar produto
-- adicionar estampa
+
+
 - editar produto
 - editar estampa
 - deletar produto
 - deletar estampa
-- fazer models
-- criar as tabelas
+- deletar categoria
+- deletar tema
+
 
 - página de produtos
 - página de cada modelo de produto
@@ -23,3 +24,9 @@
 - proteger rotas
 
 ## O que foi feito
+- criar as tabelas
+- fazer models
+- adicionar produto
+- adicionar estampa
+- adicionar tema
+- adicionar categoria
