@@ -16,7 +16,7 @@ module.exports = {
     dialect: "mysql"
   },
   production: {
-    use_env_variable: process.env.HEROKU_POSTGRESQL_GRAY_URL,
+    use_env_variable: "HEROKU_POSTGRESQL_GRAY_URL",
     dialect: "postgres",
     dialectOptions: {
       ssl: {
