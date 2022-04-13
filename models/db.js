@@ -11,8 +11,12 @@ const config = require("../config/config.js");
 // );
 //produção
 const db = new Sequelize(
+    config.production.database,
+    config.production.username,
+    config.production.password,
     config.production
 );
+
 try {
     db.authenticate();
     console.log("Conexão com o Banco de Dados estabelecida com sucesso");
