@@ -25,13 +25,13 @@ var upload = multer({
 });
 
 router.get('/adm/produtos', async (req, res) => {
-    const produtosList = await Categorias.findAll();
-    const produtos = []
-    produtosList.forEach(produto => {
-        produtos.push(produto.dataValues)
+    const categoriaList = await Categorias.findAll();
+    const categoria = []
+    categoriaList.forEach(produto => {
+        categoria.push(produto.dataValues)
     })
-    console.log(produtosList)
-    res.render('all-produtos', {produtos})
+    console.log(categoriaList)
+    res.render('all-produtos', {categoria})
 })
 // router.get('/adm/estampas', async (req, res) => {
 //     res.render('all-estampas')
