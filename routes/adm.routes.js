@@ -25,7 +25,7 @@ var upload = multer({
 });
 
 router.get('/adm/produtos', async (req, res) => {
-    const produtosList = await Produtos.findAll();
+    const produtosList = await Categorias.findAll();
     const produtos = []
     produtosList.forEach(produto => {
         produtos.push(produto.dataValues)
