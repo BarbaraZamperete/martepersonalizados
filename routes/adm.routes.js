@@ -24,9 +24,14 @@ var upload = multer({
     storage: storage
 });
 
-// router.get('/adm/produtos', async (req, res) => {
-//     res.render('all-produtos')
-// })
+router.get('/adm/produtos', async (req, res) => {
+    const produtosList = await Produtos.findAll();
+    const produtos = []
+    produtosList.forEach(produto => {
+        produtos.push(produto.dataValues)
+    })
+    res.render('all-produtos', produtos)
+})
 // router.get('/adm/estampas', async (req, res) => {
 //     res.render('all-estampas')
 // })
