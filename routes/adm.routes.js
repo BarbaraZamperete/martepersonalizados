@@ -58,7 +58,7 @@ router.get('/adm/add', async (req, res) => {
 // ########### ADICONAR PRODUTO
 
 router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
-    if (req.body && req.file) {
+    if (req.body) {
         const { nome, categoria, preco, descricao, image } = req.body
         if (categoria != "null") {
             const produto = await Produtos.create({
@@ -82,7 +82,7 @@ router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
 // ########### ADICONAR ESTAMPA
 
 router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
-    if (req.body && req.file) {
+    if (req.body) {
         const { tema, descricao, image } = req.body
         if (tema != "") {
             const estampa = await Estampas.create({
@@ -103,7 +103,7 @@ router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
 // ########### ADICONAR CATEGORIA
 
 router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
-    if (req.file && req.body) {
+    if (req.body) {
         const { nome, image } = req.body
         const categoria = await Categorias.create({
             nome: nome, 
@@ -117,7 +117,7 @@ router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
 // ########### ADICONAR TEMA
 
 router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
-    if (req.file && req.body) {
+    if (req.body) {
         const { nome, image } = req.body
         const tema = await Temas.create({
             nome: nome, 
