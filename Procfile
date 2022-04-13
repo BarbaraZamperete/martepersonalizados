@@ -1,2 +1,2 @@
 
-web: npx sequelize-cli db:migrate:all && node index.js
+web: npx sequelize-cli db:migrate && node index.js
