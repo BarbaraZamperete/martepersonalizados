@@ -2,20 +2,25 @@
 const { Sequelize } = require("sequelize");
 const config = require("../config/config.js");
 
-//desenvolvimento
-// const db = new Sequelize(
-//     config.development.database,
-//     config.development.username,
-//     config.development.password,
-//     config.development
-// );
-//produção
-const db = new Sequelize(
-    config.production.database,
-    config.production.username,
-    config.production.password,
-    config.production
-);
+let db
+
+if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+    //produção
+    db = new Sequelize(process.env.HEROKU_POSTGRESQL_GRAY_URL,{
+        dialect: 'postgres',
+        protocol: 'postgres'
+    }
+    );
+} else {
+    // desenvolvimento
+    db = new Sequelize(
+        config.development.database,
+        config.development.username,
+        config.development.password,
+        config.development
+    );
+}
+
 
 try {
     db.authenticate();
