@@ -1,0 +1,74 @@
+.adm-adicionar{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.adicionar-form{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin: 30px;
+    padding: 10px;
+    text-align: center;
+}
+.adicionar-form h4{
+    font-size: 22px;
+    margin: 0;
+}
+.adicionar-form form{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.adicionar-form form label{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.adicionar-form form input[type=text]{
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+.adicionar-form form textarea{
+    height: 50px;
+    resize: none;
+    border: none;
+    border-radius: 10px;
+}
+.adicionar-form form input[type=submit], .login form input[type=submit] {
+    background-color: rgb(71, 11, 71);
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin-top: 12px;
+}
+
+
+
+/*########################## LOGIN #######################*/
+.login{
+    margin: auto;
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+}
+.login h4{
+    font-size: 22px;
+}
+.login form{
+    display: flex;
+    flex-direction: column;
+}
+.login form input{
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background-color: whitesmoke;
+    margin-bottom: 10px;
+    padding: 8px;
+}

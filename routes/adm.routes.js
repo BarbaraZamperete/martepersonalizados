@@ -20,14 +20,29 @@ var upload = multer({
     storage: storage
 });
 
-router.get('/', async (req,res) => {
-    res.render('index');
+router.get('/adm/produtos', async (req,res) => {
+    res.render('all-produtos')
+})
+router.get('/adm/estampas', async (req,res) => {
+    res.render('all-estampas')
 })
 
-
-
-router.get('/produtos', (req, res) => {
-    res.render('produtos')
+router.get('/adm/login', async (req,res) => {
+    res.render('login')
 })
+
+router.get('/adm/add', async (req,res) => {
+    res.render('adm')
+})
+
+router.post("/post", upload.single('image'), (req, res) => {
+    if (!req.file) {
+        console.log("No file upload");
+    } else {
+        console.log(req.file)
+        
+    }
+    res.redirect('/')
+});
 
 module.exports = router
