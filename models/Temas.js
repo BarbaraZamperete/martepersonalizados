@@ -2,7 +2,7 @@ const Sequelize = require("sequelize")
 const db = require("../models/db");
 
 const Tema = db.define(
-    "Temas",
+    "temas",
     {
         idTemas: {
             type: Sequelize.INTEGER,
