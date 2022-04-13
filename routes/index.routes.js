@@ -5,20 +5,8 @@ const router = Router();
 const multer = require('multer')
 const db = require('../models/db')
 const path = require('path');
-
-//! Use of Multer
-var storage = multer.diskStorage({
-    destination: (req, file, callBack) => {
-        callBack(null, './public/images/')     // './public/images/' directory name where save the file
-    },
-    filename: (req, file, callBack) => {
-        callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-    }
-})
- 
-var upload = multer({
-    storage: storage
-});
+const Produtos = require("../models/Produtos")
+const Estampas = require("../models/Estampas")
 
 router.get('/', async (req,res) => {
     res.render('index');
@@ -26,8 +14,17 @@ router.get('/', async (req,res) => {
 
 
 
-router.get('/produtos', (req, res) => {
-    res.render('produtos')
+router.get('/produtos', async (req, res) => {
+    const listProdutos = await Produtos.findAll();
+    const listCategoria = []
+    listProdutos.forEach(produto => {
+        
+        if(!listCategoria.includes(produto.dataValues.categoria)){
+            listCategoria.push(produto.dataValues.categoria)
+        }
+    })
+    console.log(listCategoria)
+    res.render('produtos', )
 })
 
 module.exports = router

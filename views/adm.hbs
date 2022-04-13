@@ -1,30 +1,61 @@
 <section class="adm-adicionar">
     <div class="adicionar-form">
         <h4>Adicionar Novo Produto</h4>
-        <form action="" method="post"  enctype="multipart/form-data">
+        <form action="/adm/add/produto" method="post"  enctype="multipart/form-data">
             <label for="nome" >Nome:</label>
-            <input type="text" placeholder="Ex: Caneca de vidro" name="nome">
-            <label for="nome" >Tipo:</label>
-            <input type="text" placeholder="Ex: Caneca" name="tipo">
+            <input type="text" placeholder="Ex: Caneca de vidro" name="nome" required>
+            <label for="categoria"  >Categoria:</label>
+            <select name="categoria">
+                <option value="null">Selecione</option>
+                {{#each categorias}}
+                <option value="{{nome}}">{{nome}}</option>
+                {{/each}}
+            </select>
             <label for="preco">Preço:</label>
-            <input type="text" placeholder="Ex: 30,50" name="preco">
+            <input type="text" placeholder="Ex: 30,50" name="preco" required>
             <label for="descricao">Descrição:</label>
             <textarea name="descricao" id="" cols="10" rows="10" ></textarea>
-            <label for="img">Imagem:</label>
-            <input type="file" name="img" id="">
-            <input type="submit" value="Adicionar">
+            <label for="image">Imagem:</label>
+            <input type="file" name="image" id="" required>
+            <input type="submit" value="Adicionar Produto">
         </form>
     </div>
     <div class="adicionar-form">
         <h4>Adicionar Nova Estampa</h4>
-        <form action="" method="post"  enctype="multipart/form-data">
+        <form action="/adm/add/estampa" method="post"  enctype="multipart/form-data">
             <label for="tema">Tema:</label>
-            <input type="text" placeholder="Ex: Harry Potter" name="tema">
+            <select name="tema">
+                <option value="null">Selecione</option>
+                {{#each temas}}
+                <option value="{{nome}}">{{nome}}</option>
+                {{/each}}
+            </select>
             <label for="descricao">Descrição:</label>
             <textarea name="descricao" id="" cols="10" rows="10" ></textarea>
-            <label for="img">Imagem:</label>
-            <input type="file" name="img" id="">
-            <input type="submit" value="Adicionar">
+            <label for="image">Imagem:</label>
+            <input type="file" name="image" id="" required>
+            <input type="submit" value="Adicionar Estampa">
+        </form>
+    </div>
+    <div class="adicionar-form">
+        <h4>Adicionar Nova Categoria</h4>
+        <form action="/adm/add/categoria" method="post"  enctype="multipart/form-data">
+            <label for="nome">Nome:</label>
+            <input type="text" placeholder="Ex: Canecas" name="nome">
+            <label for="image">Imagem:</label>
+            <input type="file" name="image" id="">
+            <input type="submit" value="Adicionar Categoria">
+        </form>
+        <br>
+        <hr>
+        <br>
+        <h4>Adicionar Novo Tema</h4>
+        <form action="/adm/add/tema" method="post"  enctype="multipart/form-data">
+            <label for="nome">Nome:</label>
+            <input type="text" placeholder="Ex: Canecas" name="nome">
+            <label for="image">Imagem:</label>
+            <input type="file" name="image" id="">
+            <input type="submit" value="Adicionar Tema">
         </form>
     </div>
 </section>
