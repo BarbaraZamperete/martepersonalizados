@@ -6,9 +6,15 @@ let db
 
 if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
     //produção
-    db = new Sequelize(process.env.HEROKU_POSTGRESQL_GRAY_URL,{
+    db = new Sequelize(process.env.HEROKU_POSTGRESQL_GRAY_URL, {
         dialect: 'postgres',
-        protocol: 'postgres'
+        protocol: 'postgres',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        }
     }
     );
 } else {
