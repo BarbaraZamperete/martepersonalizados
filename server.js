@@ -53,5 +53,6 @@ hbs.handlebars.registerHelper('ifEquals', function(e1, e2, opts){
 
 
 app.use(require('./routes/index.routes'));
+app.use(require('./routes/adm.routes'));
 
 module.exports = app;
