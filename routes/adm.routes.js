@@ -59,18 +59,14 @@ router.get('/adm/add', async (req, res) => {
 
 router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
-        const { nome, categoria, preco, descricao } = req.body
-        const { destination, filename, fieldname, path } = req.file
+        const { nome, categoria, preco, descricao, image } = req.body
         if (categoria != "null") {
             const produto = await Produtos.create({
                 nome: nome,
                 categoria: categoria,
                 preco: preco,
                 descricao: descricao,
-                img_fieldname: fieldname,
-                img_destination: destination,
-                img_filename: filename,
-                img_path: path,
+                image: image,
             });
             // console.log(produto)
         }else{
@@ -87,16 +83,12 @@ router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
 
 router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
-        const { tema, descricao } = req.body
-        const { destination, filename, fieldname, path } = req.file
+        const { tema, descricao, image } = req.body
         if (tema != "") {
             const estampa = await Estampas.create({
                 tema: tema,
                 descricao: descricao,
-                img_fieldname: fieldname,
-                img_destination: destination,
-                img_filename: filename,
-                img_path: path,
+                image: image
             });
             // console.log(estampa)
         }else{
@@ -112,14 +104,10 @@ router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
 
 router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
     if (req.file && req.body) {
-        const { nome } = req.body
-        const { destination, filename, fieldname, path } = req.file
+        const { nome, image } = req.body
         const categoria = await Categorias.create({
             nome: nome, 
-            img_fieldname: fieldname,
-            img_destination: destination,
-            img_filename: filename,
-            img_path: path,
+            image: image
         })
         console.log(categoria)
     }
@@ -130,14 +118,10 @@ router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
 
 router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
     if (req.file && req.body) {
-        const { nome } = req.body
-        const { destination, filename, fieldname, path } = req.file
+        const { nome, image } = req.body
         const tema = await Temas.create({
             nome: nome, 
-            img_fieldname: fieldname,
-            img_destination: destination,
-            img_filename: filename,
-            img_path: path,
+            image: image
         })
         console.log(tema)
     }
