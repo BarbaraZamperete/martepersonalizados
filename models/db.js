@@ -1,17 +1,22 @@
-const Sequelize = require('sequelize');
-require('dotenv').config();
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-    host: process.env.HOST,
-    dialect: 'mysql'
-}, 'mysql::memory', {
-    logging: false
-});
+const { Sequelize } = require("sequelize");
+const config = require("../config/config.js");
 
-sequelize.authenticate().then(function(){
-    console.log("Conexão com o Banco de dados com Sucesso");
-}).catch(function(){
-    console.log("Erro na Conexão com o banco de dados");
-})
-
-module.exports = sequelize;
+//desenvolvimento
+// const db = new Sequelize(
+//     config.development.database,
+//     config.development.username,
+//     config.development.password,
+//     config.development
+// );
+//produção
+const db = new Sequelize(
+    config.production
+);
+try {
+    db.authenticate();
+    console.log("Conexão com o Banco de Dados estabelecida com sucesso");
+} catch (error) {
+    console.error("Não conectou sabosta: ", error);
+}
+module.exports = db;
