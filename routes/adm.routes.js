@@ -30,7 +30,6 @@ router.get('/adm/produtos', async (req, res) => {
     produtosList.forEach(produto => {
         produtos.push(produto.dataValues)
     })
-    console.log(produtosList)
     res.render('all-produtos', {produtos})
 })
 // router.get('/adm/estampas', async (req, res) => {
