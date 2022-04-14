@@ -17,10 +17,11 @@ module.exports = {
          primaryKey: true,
        },
        nome: Sequelize.STRING,
-       img_fieldname: Sequelize.STRING,
-       img_destination: Sequelize.STRING,
-       img_filename: Sequelize.STRING,
-       img_path: Sequelize.STRING,
+       image: Sequelize.STRING
+      //  img_fieldname: Sequelize.STRING,
+      //  img_destination: Sequelize.STRING,
+      //  img_filename: Sequelize.STRING,
+      //  img_path: Sequelize.STRING,
      })
   },
 
