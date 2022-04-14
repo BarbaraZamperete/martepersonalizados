@@ -9,6 +9,7 @@ const Produtos = require("../models/Produtos")
 const Estampas = require("../models/Estampas")
 const Categorias = require("../models/Categorias")
 const Temas = require("../models/Temas")
+const s3Client = require("../s3Client")
 
 //! Use of Multer
 var storage = multer.diskStorage({
@@ -30,9 +31,9 @@ router.get('/adm/produtos', async (req, res) => {
     categoriaList.forEach(produto => {
         categoria.push(produto.dataValues)
     })
-    console.log(categoriaList)
     res.render('all-produtos', { categoria })
 })
+
 // router.get('/adm/estampas', async (req, res) => {
 //     res.render('all-estampas')
 // })
@@ -58,24 +59,23 @@ router.get('/adm/add', async (req, res) => {
 // ########### ADICONAR PRODUTO
 
 router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
-    if (req.body) {
+    if (req.body && req.file) {
         const { nome, categoria, preco, descricao } = req.body
-        const { filename, fieldname, path, destination } = req.file
+        const { filename, path } = req.file
+        const url = await s3Client.uploadFile(filename, path);
         if (categoria != "null") {
             const produto = await Produtos.create({
                 nome: nome,
                 categoria: categoria,
                 preco: preco,
                 descricao: descricao,
-                img_fieldname: fieldname,
-                img_destination: destination,
-                img_filename: filename,
-                img_path: path,
+                imageUrl: url,
             });
             // console.log(produto)
         } else {
             console.log("selecione uma categoria para o produto")
         }
+
     } else {
         console.log("preencha todos os dados")
     }
@@ -86,17 +86,15 @@ router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
 // ########### ADICONAR ESTAMPA
 
 router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
-    if (req.body) {
+    if (req.body && req.file) {
         const { tema, descricao } = req.body
-        const { filename, fieldname, path, destination } = req.file
+        const { filename, path } = req.file
+        const url = await s3Client.uploadFile(filename, path);
         if (tema != "") {
             const estampa = await Estampas.create({
                 tema: tema,
                 descricao: descricao,
-                img_fieldname: fieldname,
-                img_destination: destination,
-                img_filename: filename,
-                img_path: path,
+                imageUrl: url,
             });
             // console.log(estampa)
         } else {
@@ -111,17 +109,15 @@ router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
 // ########### ADICONAR CATEGORIA
 
 router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
-    if (req.body) {
+    if (req.body && req.file) {
         const { nome } = req.body
         const { filename, fieldname, path, destination } = req.file
+        const url = await s3Client.uploadFile(filename, path);
         const categoria = await Categorias.create({
             nome: nome,
-            img_fieldname: fieldname,
-            img_destination: destination,
-            img_filename: filename,
-            img_path: path,
+            imageUrl: url,
         })
-        console.log(categoria)
+        // console.log(categoria)
     }
     res.redirect('/adm/add')
 });
@@ -129,15 +125,13 @@ router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
 // ########### ADICONAR TEMA
 
 router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
-    if (req.body) {
+    if (req.body && req.file) {
         const { nome } = req.body
-        const { filename, fieldname, path, destination } = req.file
+        const { filename, path } = req.file
+        const url = await s3Client.uploadFile(filename, path);
         const tema = await Temas.create({
             nome: nome,
-            img_fieldname: fieldname,
-            img_destination: destination,
-            img_filename: filename,
-            img_path: path,
+            imageUrl: url,
         })
         console.log(tema)
     }

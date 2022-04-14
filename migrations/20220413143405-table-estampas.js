@@ -18,11 +18,7 @@ module.exports = {
         },
         tema: Sequelize.STRING,
         descricao: Sequelize.STRING,
-        // image: Sequelize.STRING
-        img_fieldname: Sequelize.STRING,
-        img_destination: Sequelize.STRING,
-        img_filename: Sequelize.STRING,
-        img_path: Sequelize.STRING,
+        imageUrl: Sequelize.STRING,
       })
   },
 
