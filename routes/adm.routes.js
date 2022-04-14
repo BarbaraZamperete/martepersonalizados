@@ -31,7 +31,7 @@ router.get('/adm/produtos', async (req, res) => {
         categoria.push(produto.dataValues)
     })
     console.log(categoriaList)
-    res.render('all-produtos', {categoria})
+    res.render('all-produtos', { categoria })
 })
 // router.get('/adm/estampas', async (req, res) => {
 //     res.render('all-estampas')
@@ -52,24 +52,28 @@ router.get('/adm/add', async (req, res) => {
     temaList.forEach(tema => {
         temas.push(tema.dataValues);
     })
-    res.render('adm', {categorias, temas})
+    res.render('adm', { categorias, temas })
 })
 
 // ########### ADICONAR PRODUTO
 
 router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
     if (req.body) {
-        const { nome, categoria, preco, descricao, image } = req.body
+        const { nome, categoria, preco, descricao } = req.body
+        const { filename, fieldname, path, destination } = req.file
         if (categoria != "null") {
             const produto = await Produtos.create({
                 nome: nome,
                 categoria: categoria,
                 preco: preco,
                 descricao: descricao,
-                image: image,
+                img_fieldname: fieldname,
+                img_destination: destination,
+                img_filename: filename,
+                img_path: path,
             });
             // console.log(produto)
-        }else{
+        } else {
             console.log("selecione uma categoria para o produto")
         }
     } else {
@@ -83,15 +87,19 @@ router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
 
 router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
     if (req.body) {
-        const { tema, descricao, image } = req.body
+        const { tema, descricao } = req.body
+        const { filename, fieldname, path, destination } = req.file
         if (tema != "") {
             const estampa = await Estampas.create({
                 tema: tema,
                 descricao: descricao,
-                image: image
+                img_fieldname: fieldname,
+                img_destination: destination,
+                img_filename: filename,
+                img_path: path,
             });
             // console.log(estampa)
-        }else{
+        } else {
             console.log("insira um tema")
         }
     } else {
@@ -104,10 +112,14 @@ router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
 
 router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
     if (req.body) {
-        const { nome, image } = req.body
+        const { nome } = req.body
+        const { filename, fieldname, path, destination } = req.file
         const categoria = await Categorias.create({
-            nome: nome, 
-            image: image
+            nome: nome,
+            img_fieldname: fieldname,
+            img_destination: destination,
+            img_filename: filename,
+            img_path: path,
         })
         console.log(categoria)
     }
@@ -118,10 +130,14 @@ router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
 
 router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
     if (req.body) {
-        const { nome, image } = req.body
+        const { nome } = req.body
+        const { filename, fieldname, path, destination } = req.file
         const tema = await Temas.create({
-            nome: nome, 
-            image: image
+            nome: nome,
+            img_fieldname: fieldname,
+            img_destination: destination,
+            img_filename: filename,
+            img_path: path,
         })
         console.log(tema)
     }

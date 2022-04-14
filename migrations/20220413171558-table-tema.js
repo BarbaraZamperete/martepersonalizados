@@ -8,21 +8,22 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-     await queryInterface.createTable('temas',
-     {
-       idTemas: {
-         type: Sequelize.INTEGER,
-         autoIncrement: true,
-         allowNull: false,
-         primaryKey: true,
-       },
-       nome: Sequelize.STRING,
-       image: Sequelize.STRING
-      //  img_fieldname: Sequelize.STRING,
-      //  img_destination: Sequelize.STRING,
-      //  img_filename: Sequelize.STRING,
-      //  img_path: Sequelize.STRING,
-     })
+    await queryInterface.createTable('temas',
+      {
+        idTemas: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          allowNull: false,
+          primaryKey: true,
+        },
+        nome: Sequelize.STRING,
+        image: Sequelize.STRING,
+        // image: Sequelize.STRING
+        img_fieldname: Sequelize.STRING,
+        img_destination: Sequelize.STRING,
+        img_filename: Sequelize.STRING,
+        img_path: Sequelize.STRING,
+      })
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -32,6 +33,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-     await queryInterface.dropTable('temas');
+    await queryInterface.dropTable('temas');
   }
 };
