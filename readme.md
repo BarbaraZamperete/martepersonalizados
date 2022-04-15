@@ -1,5 +1,5 @@
 ## O que está sendo feito
-
+- deixar menuAdm responsivo
 ## O que falta fazer
 
 
