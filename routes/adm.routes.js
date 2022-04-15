@@ -26,17 +26,38 @@ var upload = multer({
 });
 
 router.get('/adm/produtos', async (req, res) => {
-    const categoriaList = await Categorias.findAll();
-    const categoria = []
-    categoriaList.forEach(produto => {
-        categoria.push(produto.dataValues)
+    const produtoList = await Produtos.findAll();
+    const produtos = []
+    produtoList.forEach(produto => {
+        produtos.push(produto.dataValues)
     })
-    res.render('all-produtos', { categoria })
+    res.render('all-produtos', { produtos })
 })
 
-// router.get('/adm/estampas', async (req, res) => {
-//     res.render('all-estampas')
-// })
+router.get('/adm/estampas', async (req, res) => {
+    const estampasList = await Estampas.findAll();
+    const estampas = []
+    estampasList.forEach(estampa => {
+        estampas.push(estampa.dataValues)
+    })
+    res.render('all-estampas', {estampas})
+})
+router.get('/adm/temas', async (req, res) => {
+    const temaList = await Temas.findAll();
+    const temas = []
+    temaList.forEach(tema => {
+        temas.push(tema.dataValues)
+    })
+    res.render('all-temas', {temas})
+})
+router.get('/adm/categorias', async (req, res) => {
+    const categoriaList = await Categorias.findAll();
+    const categorias = []
+    categoriaList.forEach(categoria => {
+        categorias.push(categoria.dataValues)
+    })
+    res.render('all-categorias', {categorias})
+})
 
 router.get('/adm/login', async (req, res) => {
     res.render('login')

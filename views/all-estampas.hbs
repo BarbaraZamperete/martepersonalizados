@@ -1,0 +1,25 @@
+{{>admMenu}}
+<section class="adm">
+    {{#each estampas}}
+    <div class="card">
+        <a href="#">Excluir<span class="material-icons">&#xe14c;</span></a>
+        <img src="{{imageUrl}}" alt="">
+        <div class="dados">
+            <h3>{{nome}}</h3>
+            <p>{{descricao}}</p>
+        </div>
+    </div>
+    {{/each}}
+</section>
+<script>
+    const produto = document.getElementById("produtos")
+    const categoria = document.getElementById("categorias")
+    const estampa = document.getElementById("estampas")
+    const tema = document.getElementById("temas")
+    const add = document.getElementById("adicionar")
+    add.classList.remove("ativo")
+    estampa.classList.add("ativo")
+    categoria.classList.remove("ativo")
+    produto.classList.remove("ativo")
+    tema.classList.remove("ativo")
+</script>

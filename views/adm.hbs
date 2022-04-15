@@ -1,3 +1,4 @@
+{{>admMenu}}
 <section class="adm-adicionar">
     <div class="adicionar-form">
         <h4>Adicionar Novo Produto</h4>
@@ -59,3 +60,15 @@
         </form>
     </div>
 </section>
+<script>
+    const produto = document.getElementById("produtos")
+    const categoria = document.getElementById("categorias")
+    const estampa = document.getElementById("estampas")
+    const tema = document.getElementById("temas")
+    const add = document.getElementById("adicionar")
+    add.classList.add("ativo")
+    produto.classList.remove("ativo")
+    estampa.classList.remove("ativo")
+    tema.classList.remove("ativo")
+    categoria.classList.remove("ativo")
+</script>

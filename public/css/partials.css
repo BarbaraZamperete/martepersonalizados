@@ -1,7 +1,6 @@
-
 /*########### HEADER #################*/
 
-header{
+header {
     background-image: url("../assets/galaxy-bg2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,9 +13,10 @@ header{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+
     border-bottom: 2px solid #000000;
 }
+
 header span {
     background-image: url("../assets/logo2.png");
     /* background-image: url("../assets/logo.jpeg"); */
@@ -26,14 +26,15 @@ header span {
     width: 200px;
     height: 200px;
 }
-header .title{
-    color: #DDAA59 ;
+
+header .title {
+    color: #DDAA59;
     text-shadow: 5px 5px 5px black;
     font-size: 40px;
 }
 
 /*########### FOOTER #################*/
-footer{
+footer {
     width: 100%;
     height: 50px;
     background-image: url("../assets/galaxy-bg2.jpg");
@@ -45,40 +46,64 @@ footer{
     flex-direction: row;
     justify-content: space-around;
 }
-footer .contato{
+
+footer .contato {
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
 }
 
-footer .icone-contato{
+footer .icone-contato {
     max-width: 30px;
     max-height: 30px;
     margin-right: 8px;
 }
 
-footer .contato-title{
+footer .contato-title {
     color: white;
-    
+
 }
 
 
+/*########### ADM MENU #################*/
+.menuAdm {
+    display: flex;
+    flex-direction: row;
+    background-color: #DDAA59;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
 
+.menu-item {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+}
 
-
+.menu-item a {
+    text-decoration: none;
+    color: black;
+}
+.ativo{
+    border-bottom: 2px solid black;
+}
 
 /*MOBILE CONFIG*/
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
+
     /*HEADER*/
-    header{
+    header {
         justify-content: space-between;
         border-bottom: 1px solid #000000;
     }
-    header .title{
+
+    header .title {
         font-size: 30px;
         margin-right: 10px;
     }
+
     /*FOOTER*/
 }

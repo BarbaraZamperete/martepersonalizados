@@ -42,3 +42,45 @@
     border-radius: 15px;
     margin-bottom: 10px;
 }
+
+
+
+
+
+/*TODOS OS PRODUTOS - ADM SECTION*/
+.adm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+.card{
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+}
+.card a{
+    text-decoration: none;
+    align-self: flex-end;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(175, 2, 2);
+    padding: 2px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.card a span{
+    font-size: 16px;
+}
+.card img{
+    max-width: 200px;
+    max-height: 200px;
+    margin: auto;
+}

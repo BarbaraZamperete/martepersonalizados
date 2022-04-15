@@ -1,15 +1,11 @@
 {{>admMenu}}
 <section class="adm">
-    {{#each produtos}}
+    {{#each temas}}
     <div class="card">
         <a href="#">Excluir<span class="material-icons">&#xe14c;</span></a>
         <img src="{{imageUrl}}" alt="">
         <div class="dados">
             <h3>{{nome}}</h3>
-            <p>{{descricao}}</p>
-            <h3>{{preco}}</h3>
-            <hr>
-            <p>{{categoria}}</p>
         </div>
     </div>
     {{/each}}
@@ -21,8 +17,8 @@
     const tema = document.getElementById("temas")
     const add = document.getElementById("adicionar")
     add.classList.remove("ativo")
-    produto.classList.add("ativo")
+    tema.classList.add("ativo")
     categoria.classList.remove("ativo")
     estampa.classList.remove("ativo")
-    tema.classList.remove("ativo")
+    produto.classList.remove("ativo")
 </script>
