@@ -9,7 +9,8 @@ const Produtos = require("../models/Produtos")
 const Estampas = require("../models/Estampas")
 const Categorias = require("../models/Categorias")
 const Temas = require("../models/Temas")
-const s3Client = require("../s3Client")
+const s3Client = require("../s3Client");
+const { route } = require('express/lib/application');
 
 //! Use of Multer
 var storage = multer.diskStorage({
@@ -158,6 +159,25 @@ router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
     }
     res.redirect('/adm/add')
 });
+
+
+
+
+
+// ############## EXCLUIR #################
+
+// EXCLUIR CATEGORIA
+
+router.get("/excluir/categoria/:id", async (req, res) => {
+    const destruir = Categorias.destroy({where: {idCategoria: req.params.id}});
+    console.log(destruir)
+    res.redirect("/adm/categorias")
+})
+router.get("/excluir/tema/:id", async (req, res) => {
+    const destruir = Temas.destroy({where: {idTemas: req.params.id}});
+    console.log(destruir)
+    res.redirect("/adm/temas")
+})
 
 
 module.exports = router

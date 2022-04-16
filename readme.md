@@ -1,15 +1,11 @@
 ## O que está sendo feito
-- deixar menuAdm responsivo
-## O que falta fazer
-
-
 - editar produto
 - editar estampa
 - deletar produto
 - deletar estampa
 - deletar categoria
 - deletar tema
-
+## O que falta fazer
 
 - página de produtos
 - página de cada modelo de produto
@@ -20,6 +16,7 @@
 - logout
 - adiconar usuário
 
+- mensagem flash
 - criptografar senha
 - proteger rotas
 
@@ -30,3 +27,4 @@
 - adicionar estampa
 - adicionar tema
 - adicionar categoria
+- deixar menuAdm responsivo
