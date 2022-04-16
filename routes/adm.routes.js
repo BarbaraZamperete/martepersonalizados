@@ -31,7 +31,7 @@ router.get('/adm/produtos', async (req, res) => {
     produtoList.forEach(produto => {
         produtos.push(produto.dataValues)
     })
-    res.render('all-produtos', { produtos })
+    res.render('adm/all-produtos', { produtos })
 })
 
 router.get('/adm/estampas', async (req, res) => {
@@ -40,7 +40,7 @@ router.get('/adm/estampas', async (req, res) => {
     estampasList.forEach(estampa => {
         estampas.push(estampa.dataValues)
     })
-    res.render('all-estampas', {estampas})
+    res.render('adm/all-estampas', {estampas})
 })
 router.get('/adm/temas', async (req, res) => {
     const temaList = await Temas.findAll();
@@ -48,7 +48,7 @@ router.get('/adm/temas', async (req, res) => {
     temaList.forEach(tema => {
         temas.push(tema.dataValues)
     })
-    res.render('all-temas', {temas})
+    res.render('adm/all-temas', {temas})
 })
 router.get('/adm/categorias', async (req, res) => {
     const categoriaList = await Categorias.findAll();
@@ -56,11 +56,11 @@ router.get('/adm/categorias', async (req, res) => {
     categoriaList.forEach(categoria => {
         categorias.push(categoria.dataValues)
     })
-    res.render('all-categorias', {categorias})
+    res.render('adm/all-categorias', {categorias})
 })
 
 router.get('/adm/login', async (req, res) => {
-    res.render('login')
+    res.render('adm/login')
 })
 
 router.get('/adm/add', async (req, res) => {
@@ -74,7 +74,7 @@ router.get('/adm/add', async (req, res) => {
     temaList.forEach(tema => {
         temas.push(tema.dataValues);
     })
-    res.render('adm', { categorias, temas })
+    res.render('adm/adm', { categorias, temas })
 })
 
 // ########### ADICONAR PRODUTO
