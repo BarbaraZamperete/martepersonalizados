@@ -1,6 +1,4 @@
 ## O que está sendo feito
-- ajustar a parte de exibição das imagens
-
 - editar produto
 - editar estampa
 - deletar produto
@@ -30,3 +28,4 @@
 - deixar menuAdm responsivo
 - deletar categoria
 - deletar tema
+- ajustar a parte de exibição das imagens

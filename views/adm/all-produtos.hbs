@@ -2,13 +2,17 @@
 <section class="adm">
     {{#each produtos}}
     <div class="card">
-        <a href="#">Excluir<span class="material-icons">&#xe14c;</span></a>
-        <img src="{{imageUrl}}" alt="">
+        <div class="editar-excluir">
+            <a href="#" id="editar"><span class="material-icons">&#xe3c9;</span>Editar</a>
+            <a href="/excluir/produto/{{idProduto}}" id="excluir"><span class="material-icons">&#xe14c;</span>Excluir</a>
+        </div>
+        <div class="img"><img src="{{imageUrl}}" alt="{{nome}}" title="{{nome}}"></div>
+        <span class="separador"></span>
         <div class="dados">
             <h3>{{nome}}</h3>
             <p>{{descricao}}</p>
-            <h3>{{preco}}</h3>
-            <hr>
+            <h2>R${{preco}}</h3>
+            <span class="separador"></span>
             <p>{{categoria}}</p>
         </div>
     </div>

@@ -63,7 +63,7 @@
     flex-direction: column;
     align-items: center;
     padding: 8px;
-    height: 400px;
+    min-height: 400px;
     width: 250px;
     margin: 10px;
 }
@@ -74,14 +74,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(175, 2, 2);
     padding: 2px;
+    width: 70px;
     border-radius: 5px;
     margin-bottom: 10px;
     font-size: 12px;
 }
+#excluir{
+    background-color: rgb(175, 2, 2);
+}
+#editar{
+    background-color: #DDAA59;
+}
 .card a span{
     font-size: 16px;
+    margin-right: 2px;
+}
+.editar-excluir{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.card .dados{
+    text-align: center;
+}
+.card .dados h3, p, h2{
+    margin: 10px;
+}
+.card .dados p{
+    word-wrap: break-word;
+    word-break: break-all;
 }
 .img{
     height: 310px;
@@ -99,7 +123,7 @@
     max-height: 270px;
     border-radius: 10px;
 }
-.card .separador{
+.separador{
     width: 90%;
     height: 2px;
     background-color: #555;

@@ -169,14 +169,25 @@ router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
 // EXCLUIR CATEGORIA
 
 router.get("/excluir/categoria/:id", async (req, res) => {
-    const destruir = Categorias.destroy({where: {idCategoria: req.params.id}});
+    const destruir =await  Categorias.destroy({where: {idCategoria: req.params.id}});
     console.log(destruir)
     res.redirect("/adm/categorias")
 })
 router.get("/excluir/tema/:id", async (req, res) => {
-    const destruir = Temas.destroy({where: {idTemas: req.params.id}});
+    const destruir = await Temas.destroy({where: {idTemas: req.params.id}});
     console.log(destruir)
     res.redirect("/adm/temas")
+})
+
+router.get("/excluir/produto/:id", async (req, res) => {
+    const destruir = await Produtos.destroy({where: {idProduto: req.params.id}});
+    console.log(destruir)
+    res.redirect("/adm/produtos")
+})
+router.get("/excluir/estampa/:id", async (req, res) => {
+    const destruir = await Estampas.destroy({where: {idEstampa: req.params.id}});
+    console.log(destruir)
+    res.redirect("/adm/estampas")
 })
 
 
