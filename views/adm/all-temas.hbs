@@ -3,7 +3,8 @@
     {{#each temas}}
     <div class="card">
         <a href="/excluir/tema/{{idTemas}}">Excluir<span class="material-icons">&#xe14c;</span></a>
-        <img src="{{imageUrl}}" alt="">
+        <div class="img"><img src="{{imageUrl}}" alt="{{nome}}" title="{{nome}}"></div>
+        <span class="separador"></span>
         <div class="dados">
             <h3>{{nome}}</h3>
         </div>

@@ -1,10 +1,10 @@
 ## O que está sendo feito
+- ajustar a parte de exibição das imagens
+
 - editar produto
 - editar estampa
 - deletar produto
 - deletar estampa
-- deletar categoria
-- deletar tema
 ## O que falta fazer
 
 - página de produtos
@@ -28,3 +28,5 @@
 - adicionar tema
 - adicionar categoria
 - deixar menuAdm responsivo
+- deletar categoria
+- deletar tema
