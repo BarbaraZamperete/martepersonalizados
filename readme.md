@@ -1,9 +1,8 @@
 ## O que está sendo feito
-- editar produto
-- editar estampa
-- deletar produto
-- deletar estampa
+
 ## O que falta fazer
+
+- editar estampa
 
 - página de produtos
 - página de cada modelo de produto
@@ -29,3 +28,6 @@
 - deletar categoria
 - deletar tema
 - ajustar a parte de exibição das imagens
+- editar produto
+- deletar produto
+- deletar estampa
