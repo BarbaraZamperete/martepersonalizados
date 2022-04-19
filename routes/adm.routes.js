@@ -12,6 +12,8 @@ const Temas = require("../models/Temas")
 const s3Client = require("../s3Client");
 const { route } = require('express/lib/application');
 const { contentDisposition } = require('express/lib/utils');
+const fs = require('fs')
+require("dotenv").config();
 
 //! Use of Multer
 var storage = multer.diskStorage({
@@ -26,6 +28,9 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage
 });
+
+// ###### ################ GETS ###################
+
 
 router.get('/adm/produtos', async (req, res) => {
     const produtoList = await Produtos.findAll();
@@ -42,7 +47,7 @@ router.get('/adm/estampas', async (req, res) => {
     estampasList.forEach(estampa => {
         estampas.push(estampa.dataValues)
     })
-    res.render('adm/all-estampas', {estampas})
+    res.render('adm/all-estampas', { estampas })
 })
 router.get('/adm/temas', async (req, res) => {
     const temaList = await Temas.findAll();
@@ -50,7 +55,7 @@ router.get('/adm/temas', async (req, res) => {
     temaList.forEach(tema => {
         temas.push(tema.dataValues)
     })
-    res.render('adm/all-temas', {temas})
+    res.render('adm/all-temas', { temas })
 })
 router.get('/adm/categorias', async (req, res) => {
     const categoriaList = await Categorias.findAll();
@@ -58,7 +63,7 @@ router.get('/adm/categorias', async (req, res) => {
     categoriaList.forEach(categoria => {
         categorias.push(categoria.dataValues)
     })
-    res.render('adm/all-categorias', {categorias})
+    res.render('adm/all-categorias', { categorias })
 })
 
 router.get('/adm/login', async (req, res) => {
@@ -79,13 +84,18 @@ router.get('/adm/add', async (req, res) => {
     res.render('adm/adm', { categorias, temas })
 })
 
+// ###### ################ POST ###################
+
 // ########### ADICONAR PRODUTO
 
 router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { nome, categoria, preco, descricao } = req.body
         const { filename, path } = req.file
-        const url = await s3Client.uploadFile(filename, path);
+        let url = filename;
+        if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+            url = await s3Client.uploadFile(filename, path);
+        }
         if (categoria != "null") {
             const produto = await Produtos.create({
                 nome: nome,
@@ -112,7 +122,10 @@ router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { tema, descricao } = req.body
         const { filename, path } = req.file
-        const url = await s3Client.uploadFile(filename, path);
+        let url = filename;
+        if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+            url = await s3Client.uploadFile(filename, path);
+        }
         if (tema != "") {
             const estampa = await Estampas.create({
                 tema: tema,
@@ -135,7 +148,10 @@ router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { nome } = req.body
         const { filename, fieldname, path, destination } = req.file
-        const url = await s3Client.uploadFile(filename, path);
+        let url = filename;
+        if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+            url = await s3Client.uploadFile(filename, path);
+        }
         const categoria = await Categorias.create({
             nome: nome,
             imageUrl: url,
@@ -151,7 +167,10 @@ router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { nome } = req.body
         const { filename, path } = req.file
-        const url = await s3Client.uploadFile(filename, path);
+        let url = filename;
+        if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+            url = await s3Client.uploadFile(filename, path);
+        }
         const tema = await Temas.create({
             nome: nome,
             imageUrl: url,
@@ -170,41 +189,77 @@ router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
 // EXCLUIR CATEGORIA
 
 router.get("/excluir/categoria/:id", async (req, res) => {
-    const categoria = await Categorias.findOne({where: {idCategoria: req.params.id}})
-    const fileName = categoria.imageUrl.substr(45)
-    const url = await s3Client.deletFile(fileName)
-    const destruir =await  Categorias.destroy({where: {idCategoria: req.params.id}});
+    const categoria = await Categorias.findOne({ where: { idCategoria: req.params.id } })
+    if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+        const fileName = categoria.imageUrl.substr(45)
+        const url = await s3Client.deletFile(fileName)
+    }else{
+        try{
+            fs.unlinkSync("public/uploads/" + categoria.imageUrl)
+            console.log("sucesso")
+        } catch(err){
+            console.log(err + " erro ")
+        }
+    }
+    const destruir = await Categorias.destroy({ where: { idCategoria: req.params.id } });
     res.redirect("/adm/categorias")
 })
 router.get("/excluir/tema/:id", async (req, res) => {
-    const tema = await Temas.findOne({where: {idTemas: req.params.id}})
-    const fileName = tema.imageUrl.substr(45)
-    const url = await s3Client.deletFile(fileName)
-    const destruir = await Temas.destroy({where: {idTemas: req.params.id}});
+    const tema = await Temas.findOne({ where: { idTemas: req.params.id } })
+    if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+        const fileName = tema.imageUrl.substr(45)
+        const url = await s3Client.deletFile(fileName)
+    }else{
+        try{
+            fs.unlinkSync("public/uploads/" + tema.imageUrl)
+            console.log("sucesso")
+        } catch(err){
+            console.log(err + " erro ")
+        }
+    }
+    const destruir = await Temas.destroy({ where: { idTemas: req.params.id } });
     console.log(destruir)
     res.redirect("/adm/temas")
 })
 
 router.get("/excluir/produto/:id", async (req, res) => {
-    const produto = await Produtos.findOne({where: {idProduto: req.params.id}})
-    const fileName = produto.imageUrl.substr(45)
-    const url = await s3Client.deletFile(fileName)
-    const destruir = await Produtos.destroy({where: {idProduto: req.params.id}});
+    const produto = await Produtos.findOne({ where: { idProduto: req.params.id } })
+    if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+        const fileName = produto.imageUrl.substr(45)
+        const url = await s3Client.deletFile(fileName)
+    }else{
+        try{
+            fs.unlinkSync("public/uploads/" + produto.imageUrl)
+            console.log("sucesso")
+        } catch(err){
+            console.log(err + " erro ")
+        }
+    }
+    const destruir = await Produtos.destroy({ where: { idProduto: req.params.id } });
     console.log(destruir)
     res.redirect("/adm/produtos")
 })
 router.get("/excluir/estampa/:id", async (req, res) => {
-    const estampa = await Estampas.findOne({where: {idEstampa: req.params.id}})
-    const fileName = estampa.imageUrl.substr(45)
-    const url = await s3Client.deletFile(fileName)
-    const destruir = await Estampas.destroy({where: {idEstampa: req.params.id}});
+    const estampa = await Estampas.findOne({ where: { idEstampa: req.params.id } })
+    if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
+        const fileName = estampa.imageUrl.substr(45)
+        const url = await s3Client.deletFile(fileName)
+    }else{
+        try{
+            fs.unlinkSync("public/uploads/" + estampa.imageUrl)
+            console.log("sucesso")
+        } catch(err){
+            console.log(err + " erro ")
+        }
+    }
+    const destruir = await Estampas.destroy({ where: { idEstampa: req.params.id } });
     console.log(destruir)
     res.redirect("/adm/estampas")
 })
 
 
 
-// ############## EDITAR #################
+// ############## EDITAR PRODUTO GET AND PUT #################
 
 router.get("/adm/edit/produto/:id", async (req, res) => {
     const item = "produto"
@@ -213,19 +268,19 @@ router.get("/adm/edit/produto/:id", async (req, res) => {
     categoriasList.forEach(categoria => {
         categorias.push(categoria.dataValues);
     })
-    const produtoCru = await Produtos.findOne({where: {idProduto: req.params.id}})
+    const produtoCru = await Produtos.findOne({ where: { idProduto: req.params.id } })
     const produto = produtoCru.dataValues
-    res.render("adm/edit-page", {item, produto, categorias});
+    res.render("adm/edit-page", { item, produto, categorias });
 })
 
-router.post("/adm/edit/produto/:id", async (req, res) =>{
+router.post("/adm/edit/produto/:id", async (req, res) => {
     // console.log(req.body)
     const id = req.params.id
     const { nome, preco, descricao } = req.body
-    const update = await Produtos.update({nome: nome, preco: preco, descricao: descricao}, {where: {idProduto: id}})
+    const update = await Produtos.update({ nome: nome, preco: preco, descricao: descricao }, { where: { idProduto: id } })
     console.log(update)
     res.redirect("/adm/produtos")
-    
+
 });
 
 module.exports = router
