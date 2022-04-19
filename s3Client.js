@@ -30,5 +30,16 @@ async function listObjects(filter) {
     return result.Contents.map(item => item.Key);
 }
 
+async function deletFile(fileName) {
+    const s3 = new AWS.S3({ apiVersion: '2006-03-01', region: process.env.AWS_REGION });
+    const params = {
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: fileName,
+        //ContentType: mimeType//geralmente se acha sozinho
+    };
+    const result = await s3.deleteObject(params).promise();
+    return result
+}
 
-module.exports = { uploadFile, listObjects}
+
+module.exports = { uploadFile, listObjects, deletFile }

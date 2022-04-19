@@ -38,6 +38,7 @@
     resize: none;
     border: none;
     border-radius: 10px;
+    padding: 5px;
 }
 .adicionar-form form input[type=submit], .login form input[type=submit] {
     background-color: rgb(71, 11, 71);

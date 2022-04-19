@@ -130,3 +130,14 @@
     margin-top: 10px;
     border-radius: 50px;
 }
+
+/*   EDITAR IMAGEM DO PRODUTO  */
+.img-edit{
+    max-height: 200px;
+    max-width: 200px;
+    width: fit-content;
+    height: fit-content;
+    image-rendering: optimizeSpeed;
+    margin: 10px auto;
+    border-radius: 10px;
+}

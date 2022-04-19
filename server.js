@@ -11,7 +11,7 @@ const { networkInterfaces } = require('os');
 
 const passport = require('passport');
 
-app.engine('.hbs', engine({extname: '.hbs'}));
+app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', './views');
 
@@ -21,7 +21,7 @@ app.set('views', './views');
 app.use(express.static(path.join(__dirname, 'public')));
 
 //midlewares
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(session({
     secret: 'secret',
     resave: true,
@@ -37,18 +37,37 @@ app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg')
     res.locals.alert_msg = req.flash('alert_msg')
-    res.locals.user = req.user||null
+    res.locals.user = req.user || null
     next()
 })
 
 var hbs = expressHbs.create({});
-hbs.handlebars.registerHelper('ifEquals', function(e1, e2, opts){
-    if (e1 == e2) {
-        return opts.fn(this);
-    }else{
-        return opts.inverse(this);
+hbs.handlebars.registerHelper("ifCond", function (v1, operator, v2, options) {
+    switch (operator) {
+        case "==":
+            return v1 == v2 ? options.fn(this) : options.inverse(this);
+        case "===":
+            return v1 === v2 ? options.fn(this) : options.inverse(this);
+        case "!=":
+            return v1 != v2 ? options.fn(this) : options.inverse(this);
+        case "!==":
+            return v1 !== v2 ? options.fn(this) : options.inverse(this);
+        case "<":
+            return v1 < v2 ? options.fn(this) : options.inverse(this);
+        case "<=":
+            return v1 <= v2 ? options.fn(this) : options.inverse(this);
+        case ">":
+            return v1 > v2 ? options.fn(this) : options.inverse(this);
+        case ">=":
+            return v1 >= v2 ? options.fn(this) : options.inverse(this);
+        case "&&":
+            return v1 && v2 ? options.fn(this) : options.inverse(this);
+        case "||":
+            return v1 || v2 ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
     }
-})
+});
 
 
 

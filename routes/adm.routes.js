@@ -11,6 +11,7 @@ const Categorias = require("../models/Categorias")
 const Temas = require("../models/Temas")
 const s3Client = require("../s3Client");
 const { route } = require('express/lib/application');
+const { contentDisposition } = require('express/lib/utils');
 
 //! Use of Multer
 var storage = multer.diskStorage({
@@ -169,26 +170,62 @@ router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
 // EXCLUIR CATEGORIA
 
 router.get("/excluir/categoria/:id", async (req, res) => {
+    const categoria = await Categorias.findOne({where: {idCategoria: req.params.id}})
+    const fileName = categoria.imageUrl.substr(45)
+    const url = await s3Client.deletFile(fileName)
     const destruir =await  Categorias.destroy({where: {idCategoria: req.params.id}});
-    console.log(destruir)
     res.redirect("/adm/categorias")
 })
 router.get("/excluir/tema/:id", async (req, res) => {
+    const tema = await Temas.findOne({where: {idTemas: req.params.id}})
+    const fileName = tema.imageUrl.substr(45)
+    const url = await s3Client.deletFile(fileName)
     const destruir = await Temas.destroy({where: {idTemas: req.params.id}});
     console.log(destruir)
     res.redirect("/adm/temas")
 })
 
 router.get("/excluir/produto/:id", async (req, res) => {
+    const produto = await Produtos.findOne({where: {idProduto: req.params.id}})
+    const fileName = produto.imageUrl.substr(45)
+    const url = await s3Client.deletFile(fileName)
     const destruir = await Produtos.destroy({where: {idProduto: req.params.id}});
     console.log(destruir)
     res.redirect("/adm/produtos")
 })
 router.get("/excluir/estampa/:id", async (req, res) => {
+    const estampa = await Estampas.findOne({where: {idEstampa: req.params.id}})
+    const fileName = estampa.imageUrl.substr(45)
+    const url = await s3Client.deletFile(fileName)
     const destruir = await Estampas.destroy({where: {idEstampa: req.params.id}});
     console.log(destruir)
     res.redirect("/adm/estampas")
 })
 
+
+
+// ############## EDITAR #################
+
+router.get("/adm/edit/produto/:id", async (req, res) => {
+    const item = "produto"
+    const categoriasList = await Categorias.findAll();
+    const categorias = []
+    categoriasList.forEach(categoria => {
+        categorias.push(categoria.dataValues);
+    })
+    const produtoCru = await Produtos.findOne({where: {idProduto: req.params.id}})
+    const produto = produtoCru.dataValues
+    res.render("adm/edit-page", {item, produto, categorias});
+})
+
+router.post("/adm/edit/produto/:id", async (req, res) =>{
+    // console.log(req.body)
+    const id = req.params.id
+    const { nome, preco, descricao } = req.body
+    const update = await Produtos.update({nome: nome, preco: preco, descricao: descricao}, {where: {idProduto: id}})
+    console.log(update)
+    res.redirect("/adm/produtos")
+    
+});
 
 module.exports = router
