@@ -262,7 +262,6 @@ router.get("/excluir/estampa/:id", async (req, res) => {
 // ############## EDITAR PRODUTO GET AND PUT #################
 
 router.get("/adm/edit/produto/:id", async (req, res) => {
-    const item = "produto"
     const categoriasList = await Categorias.findAll();
     const categorias = []
     categoriasList.forEach(categoria => {
@@ -270,7 +269,7 @@ router.get("/adm/edit/produto/:id", async (req, res) => {
     })
     const produtoCru = await Produtos.findOne({ where: { idProduto: req.params.id } })
     const produto = produtoCru.dataValues
-    res.render("adm/edit-page", { item, produto, categorias });
+    res.render("adm/edit-page", { produto, categorias });
 })
 
 router.post("/adm/edit/produto/:id", async (req, res) => {
