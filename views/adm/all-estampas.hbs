@@ -2,9 +2,7 @@
 <section class="adm">
     {{#each estampas}}
     <div class="card">
-       <div class="editar-excluir">
-            <a href="/excluir/estampa/{{idEstampa}}" id="excluir"><span class="material-icons">&#xe14c;</span>Excluir</a>
-        </div>
+        <a href="/excluir/estampa/{{idEstampa}}" id="excluir"><span class="material-icons">&#xe14c;</span>Excluir</a>
         <div class="img"><img src="{{imageUrl}}" alt="{{nome}}" title="{{nome}}"></div>
         <span class="separador"></span>
         <div class="dados">
