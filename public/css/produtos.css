@@ -24,6 +24,7 @@
 .produtos-cards{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .produto{
     display: flex;
@@ -52,7 +53,47 @@
 }
 
 
-
+/*   PRODUTOS CLIENT SECTION  */
+.card-client{
+    display: flex;
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+    align-items: center;
+}
+.card-client img{
+    height: 120px;
+    max-width: 200px;
+    border-radius: 10px;
+}
+.card-client .dados{
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    flex-wrap: wrap;
+    padding-left: 15px;
+    height: 100%;
+}
+.card-client #titulo{
+    text-transform: uppercase;
+    margin: 5px;
+    flex: 0.2
+}
+.card-client .subdados{
+    flex: 0.8;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+}
+.card-client #preco{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: fit-content;
+    height: fit-content;
+    margin: 0px;
+}
 
 
 /*TODOS OS PRODUTOS - ADM SECTION*/

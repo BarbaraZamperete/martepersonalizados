@@ -5,10 +5,17 @@
     </a>
     <section class="produtos-cards">
         {{#each produtos}}
-        <a class="produto" href="/produtos/{{nome}}">
-            <div class="img-produto"><img src="/uploads/{{imageUrl}}" alt=""></div>
-            <div class="produto-nome">{{nome}}</div>
-        </a>
+        <div class="card-client">
+            <img src="/uploads/{{imageUrl}}" alt="">
+            <div class="dados">
+                <h3 id="titulo">{{nome}}</h3>
+                <div class="subdados">
+                    <p>{{descricao}}</p>
+                    <h2 id="preco">{{preco}}</h2>
+                </div>
+            </div>
+
+        </div>
         {{/each}}
     </section>
 </section>

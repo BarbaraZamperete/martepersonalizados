@@ -2,7 +2,7 @@
 <section class="adm-adicionar">
     <div class="adicionar-form">
         <h4>Editar Produto</h4>
-        <form action="/adm/edit/produto/{{produto.idProduto}}" method="post">
+        <form action="/adm/edit/{{produto.idProduto}}" method="post">
             <label for="nome">Nome: </label>
             <input type="text" value="{{produto.nome}}" name="nome" id="">
             <label for="categoria">Categoria: {{produto.categoria}}</label>
