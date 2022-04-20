@@ -1,15 +1,11 @@
 ## O que está sendo feito
-- criar uma seed com o 1 user
-- add p rodar a seed no dyno heroku
-- mensagem flash
-- login
-- logout
+
 ## O que falta fazer
 
 - editar estampa
 - adiconar usuário
-- criptografar senha
-- proteger rotas
+
+
 
 ## O que foi feito
 - criar as tabelas
@@ -29,3 +25,10 @@
 - página de cada modelo de produto
 - página de temas de estampa
 - pagina de estampas por modelo
+- criar uma seed com o 1 user
+- add p rodar a seed no dyno heroku
+- mensagem flash
+- login
+- logout
+- criptografar senha
+- proteger rotas

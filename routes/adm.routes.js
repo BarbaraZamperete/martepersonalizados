@@ -15,6 +15,9 @@ const { contentDisposition } = require('express/lib/utils');
 const fs = require('fs')
 require("dotenv").config();
 const passport = require('passport');
+const {
+    isAuthenticated
+} = require('../helpers/auth');
 
 //! Use of Multer
 var storage = multer.diskStorage({
@@ -33,7 +36,7 @@ var upload = multer({
 // ###### ################ GETS ###################
 
 
-router.get('/adm/produtos', async (req, res) => {
+router.get('/adm/produtos', isAuthenticated, async (req, res) => {
     const produtoList = await Produtos.findAll();
     const produtos = []
     produtoList.forEach(produto => {
@@ -42,7 +45,7 @@ router.get('/adm/produtos', async (req, res) => {
     res.render('adm/all-produtos', { produtos })
 })
 
-router.get('/adm/estampas', async (req, res) => {
+router.get('/adm/estampas', isAuthenticated, async (req, res) => {
     const estampasList = await Estampas.findAll();
     const estampas = []
     estampasList.forEach(estampa => {
@@ -50,7 +53,7 @@ router.get('/adm/estampas', async (req, res) => {
     })
     res.render('adm/all-estampas', { estampas })
 })
-router.get('/adm/temas', async (req, res) => {
+router.get('/adm/temas', isAuthenticated, async (req, res) => {
     const temaList = await Temas.findAll();
     const temas = []
     temaList.forEach(tema => {
@@ -58,7 +61,7 @@ router.get('/adm/temas', async (req, res) => {
     })
     res.render('adm/all-temas', { temas })
 })
-router.get('/adm/categorias', async (req, res) => {
+router.get('/adm/categorias', isAuthenticated, async (req, res) => {
     const categoriaList = await Categorias.findAll();
     const categorias = []
     categoriaList.forEach(categoria => {
@@ -69,7 +72,7 @@ router.get('/adm/categorias', async (req, res) => {
 
 
 
-router.get('/adm/add', async (req, res) => {
+router.get('/adm/add', isAuthenticated, async (req, res) => {
     const categoriasList = await Categorias.findAll();
     const categorias = []
     categoriasList.forEach(categoria => {
@@ -87,7 +90,7 @@ router.get('/adm/add', async (req, res) => {
 
 // ########### ADICONAR PRODUTO
 
-router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
+router.post("/adm/add/produto", isAuthenticated, upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { nome, categoria, preco, descricao } = req.body
         const { filename, path } = req.file
@@ -118,7 +121,7 @@ router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
 
 // ########### ADICONAR ESTAMPA
 
-router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
+router.post("/adm/add/estampa", isAuthenticated, upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { tema, descricao } = req.body
         const { filename, path } = req.file
@@ -146,7 +149,7 @@ router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
 
 // ########### ADICONAR CATEGORIA
 
-router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
+router.post("/adm/add/categoria", isAuthenticated, upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { nome } = req.body
         const { filename, fieldname, path, destination } = req.file
@@ -165,7 +168,7 @@ router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
 
 // ########### ADICONAR TEMA
 
-router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
+router.post("/adm/add/tema", isAuthenticated, upload.single('image'), async (req, res) => {
     if (req.body && req.file) {
         const { nome } = req.body
         const { filename, path } = req.file
@@ -191,7 +194,7 @@ router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
 
 // EXCLUIR CATEGORIA
 
-router.get("/excluir/categoria/:id", async (req, res) => {
+router.get("/excluir/categoria/:id", isAuthenticated, async (req, res) => {
     const categoria = await Categorias.findOne({ where: { idCategoria: req.params.id } })
     if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
         const fileName = categoria.imageUrl.substr(45)
@@ -209,7 +212,7 @@ router.get("/excluir/categoria/:id", async (req, res) => {
     const destruir = await Categorias.destroy({ where: { idCategoria: req.params.id } });
     res.redirect("/adm/categorias")
 })
-router.get("/excluir/tema/:id", async (req, res) => {
+router.get("/excluir/tema/:id", isAuthenticated, async (req, res) => {
     const tema = await Temas.findOne({ where: { idTemas: req.params.id } })
     if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
         const fileName = tema.imageUrl.substr(45)
@@ -228,7 +231,7 @@ router.get("/excluir/tema/:id", async (req, res) => {
     res.redirect("/adm/temas")
 })
 
-router.get("/excluir/produto/:id", async (req, res) => {
+router.get("/excluir/produto/:id", isAuthenticated, async (req, res) => {
     const produto = await Produtos.findOne({ where: { idProduto: req.params.id } })
     if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
         const fileName = produto.imageUrl.substr(45)
@@ -246,7 +249,7 @@ router.get("/excluir/produto/:id", async (req, res) => {
     req.flash("success_msg", "Produto removido")
     res.redirect("/adm/produtos")
 })
-router.get("/excluir/estampa/:id", async (req, res) => {
+router.get("/excluir/estampa/:id", isAuthenticated, async (req, res) => {
     const estampa = await Estampas.findOne({ where: { idEstampa: req.params.id } })
     if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
         const fileName = estampa.imageUrl.substr(45)
@@ -269,7 +272,7 @@ router.get("/excluir/estampa/:id", async (req, res) => {
 
 // ############## EDITAR PRODUTO GET AND PUT #################
 
-router.get("/adm/edit/produto/:id", async (req, res) => {
+router.get("/adm/edit/produto/:id", isAuthenticated, async (req, res) => {
     const categoriasList = await Categorias.findAll();
     const categorias = []
     categoriasList.forEach(categoria => {
@@ -286,7 +289,7 @@ router.get("/adm/edit/produto/:id", async (req, res) => {
 
 })
 
-router.post("/adm/edit/:id", async (req, res) => {
+router.post("/adm/edit/:id", isAuthenticated, async (req, res) => {
     // console.log(req.body)
     const id = req.params.id
     const { nome, preco, descricao } = req.body
@@ -308,7 +311,7 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true
 }))
 
-router.get('/logout', (req , res) => {
+router.get('/logout', isAuthenticated, (req , res) => {
     req.logout();
     req.flash("success_msg", "Você foi deslogado")
     res.redirect("/adm/login")
