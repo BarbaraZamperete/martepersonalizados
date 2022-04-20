@@ -183,10 +183,10 @@ h3#numero{
 .card .dados h3, p, h2{
     margin: 10px;
 }
-.card .dados p{
+/* .card .dados p{
     word-wrap: break-word;
     word-break: break-all;
-}
+} */
 .img{
     height: 310px;
     width: 210px;
