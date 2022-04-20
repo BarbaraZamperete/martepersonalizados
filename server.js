@@ -10,6 +10,7 @@ const { networkInterfaces } = require('os');
 
 
 const passport = require('passport');
+require('./config/passport');
 
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');

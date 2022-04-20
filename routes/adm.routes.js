@@ -14,6 +14,7 @@ const { route } = require('express/lib/application');
 const { contentDisposition } = require('express/lib/utils');
 const fs = require('fs')
 require("dotenv").config();
+const passport = require('passport');
 
 //! Use of Multer
 var storage = multer.diskStorage({
@@ -66,9 +67,7 @@ router.get('/adm/categorias', async (req, res) => {
     res.render('adm/all-categorias', { categorias })
 })
 
-router.get('/adm/login', async (req, res) => {
-    res.render('adm/login')
-})
+
 
 router.get('/adm/add', async (req, res) => {
     const categoriasList = await Categorias.findAll();
@@ -104,15 +103,16 @@ router.post("/adm/add/produto", upload.single('image'), async (req, res) => {
                 descricao: descricao,
                 imageUrl: url,
             });
-            // console.log(produto)
+            req.flash("success_msg", "Produto adicionado")
         } else {
             console.log("selecione uma categoria para o produto")
+            req.flash("alert_msg", "Selecione uma categoria para o produto")
         }
 
     } else {
         console.log("preencha todos os dados")
+        req.flash("alert_msg", "Preencha todos os dados")
     }
-
     res.redirect('/adm/add')
 });
 
@@ -132,12 +132,14 @@ router.post("/adm/add/estampa", upload.single('image'), async (req, res) => {
                 descricao: descricao,
                 imageUrl: url,
             });
-            // console.log(estampa)
+            req.flash("success_msg", "Estampa adicionada")
         } else {
             console.log("insira um tema")
+            req.flash("alert_msg", "Escolha um Tema")
         }
     } else {
         console.log("preencha todos os dados")
+        req.flash("alert_msg", "Preencha todos os dados")
     }
     res.redirect('/adm/add')
 });
@@ -156,7 +158,7 @@ router.post("/adm/add/categoria", upload.single('image'), async (req, res) => {
             nome: nome,
             imageUrl: url,
         })
-        // console.log(categoria)
+        req.flash("success_msg", "Categoria adicionada")
     }
     res.redirect('/adm/add')
 });
@@ -176,6 +178,7 @@ router.post("/adm/add/tema", upload.single('image'), async (req, res) => {
             imageUrl: url,
         })
         console.log(tema)
+        req.flash("success_msg", "Tema adicionado")
     }
     res.redirect('/adm/add')
 });
@@ -193,10 +196,12 @@ router.get("/excluir/categoria/:id", async (req, res) => {
     if (process.env.HEROKU_POSTGRESQL_GRAY_URL) {
         const fileName = categoria.imageUrl.substr(45)
         const url = await s3Client.deletFile(fileName)
+        req.flash("success_msg", "Categoria removida")
     } else {
         try {
             fs.unlinkSync("public/uploads/" + categoria.imageUrl)
             console.log("sucesso")
+            req.flash("success_msg", "Categoria removida")
         } catch (err) {
             console.log(err + " erro ")
         }
@@ -219,6 +224,7 @@ router.get("/excluir/tema/:id", async (req, res) => {
     }
     const destruir = await Temas.destroy({ where: { idTemas: req.params.id } });
     console.log(destruir)
+    req.flash("success_msg", "Tema removido")
     res.redirect("/adm/temas")
 })
 
@@ -237,6 +243,7 @@ router.get("/excluir/produto/:id", async (req, res) => {
     }
     const destruir = await Produtos.destroy({ where: { idProduto: req.params.id } });
     console.log(destruir)
+    req.flash("success_msg", "Produto removido")
     res.redirect("/adm/produtos")
 })
 router.get("/excluir/estampa/:id", async (req, res) => {
@@ -254,6 +261,7 @@ router.get("/excluir/estampa/:id", async (req, res) => {
     }
     const destruir = await Estampas.destroy({ where: { idEstampa: req.params.id } });
     console.log(destruir)
+    req.flash("success_msg", "Estampa removida")
     res.redirect("/adm/estampas")
 })
 
@@ -284,8 +292,26 @@ router.post("/adm/edit/:id", async (req, res) => {
     const { nome, preco, descricao } = req.body
     const update = await Produtos.update({ nome: nome, preco: preco, descricao: descricao }, { where: { idProduto: id } })
     console.log(update)
+    req.flash("success_msg", "Produto atualizado")
     res.redirect("/adm/produtos")
 
 });
+
+
+/* ################## LOGIN  ######################### */
+router.get('/adm/login', async (req, res) => {
+    res.render('adm/login')
+})
+router.post('/login', passport.authenticate('local', {
+    failureRedirect: '/adm/login',
+    successRedirect: '/adm/add',
+    failureFlash: true
+}))
+
+router.get('/logout', (req , res) => {
+    req.logout();
+    req.flash("success_msg", "Você foi deslogado")
+    res.redirect("/adm/login")
+})
 
 module.exports = router

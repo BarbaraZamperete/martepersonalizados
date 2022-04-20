@@ -92,6 +92,26 @@ footer .contato-title {
 
 
 
+/* MENSAGEM BOX*/
+.box-msg{
+    box-sizing: content-box;
+    position: absolute;
+    left: calc(50% - 150px);
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    width: 300px;
+    padding: 3px 2px 3px 2px;
+    font-size: 14px;
+}
+.success{
+    background-color: rgb(172, 221, 172);
+    color: green;
+}
+.alert{
+    color: red;
+    background-color: rgb(246, 181, 181);
+}
 
 
 
