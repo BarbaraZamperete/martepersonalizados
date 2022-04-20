@@ -1,4 +1,6 @@
 ## O que está sendo feito
+- criar uma seed com o 1 user
+- add p rodar a seed no dyno heroku
 - mensagem flash
 - login
 - logout
