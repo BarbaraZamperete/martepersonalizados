@@ -1,19 +1,11 @@
 ## O que está sendo feito
-- página de produtos
+- mensagem flash
+- login
+- logout
 ## O que falta fazer
 
 - editar estampa
-
-
-- página de cada modelo de produto
-- página de temas de estampa
-- pagina de estampas por modelo
-
-- login
-- logout
 - adiconar usuário
-
-- mensagem flash
 - criptografar senha
 - proteger rotas
 
@@ -31,3 +23,7 @@
 - editar produto
 - deletar produto
 - deletar estampa
+- página de produtos
+- página de cada modelo de produto
+- página de temas de estampa
+- pagina de estampas por modelo
