@@ -13,18 +13,18 @@ module.exports = {
     */
    const salt = await bcrypt.genSalt(10);
    const senha = await bcrypt.hash('marteAdm2022', salt)
-  //  await queryInterface.bulkInsert('users', [{
-  //    login: "marteAdm",
-  //    senha: senha
-  //  }])
-      await queryInterface.sequelize.query(`INSERT INTO users  
-      (
-        login, senha
-      ) VALUES(
-        "marteAdm",
-        "${senha}"
-      )
-      `)
+   await queryInterface.bulkInsert('users', [{
+     login: "marteAdm",
+     senha: senha
+   }])
+      // await queryInterface.sequelize.query(`INSERT INTO users  
+      // (
+      //   login, senha
+      // ) VALUES(
+      //   "marteAdm",
+      //   "${senha}"
+      // )
+      // `)
   },
 
   async down (queryInterface, Sequelize) {
