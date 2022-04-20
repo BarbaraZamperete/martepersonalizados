@@ -14,7 +14,7 @@
     align-self: flex-start;
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 100%;
     margin: auto;
     font-size: 26px;
     text-decoration: none;
@@ -148,4 +148,10 @@
     image-rendering: optimizeSpeed;
     margin: 10px auto;
     border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .produtos-page .title{
+        width: 90%;
+    }
 }
