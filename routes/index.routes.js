@@ -8,12 +8,13 @@ const path = require('path');
 const Produtos = require("../models/Produtos")
 const Estampas = require("../models/Estampas")
 const Categorias = require("../models/Categorias");
+const Temas = require("../models/Temas")
 
 router.get('/', async (req,res) => {
     res.render('index');
 })
 
-
+// ########### PRODUTOS ROTAS
 
 router.get('/produtos/categoria', async (req, res) => {
     const categoriaList = await Categorias.findAll();
@@ -31,6 +32,27 @@ router.get('/produtos/:categoria', async (req, res) => {
         produtos.push(produto.dataValues)
     })
     res.render('produtos/produtos', {categoria, produtos})
+})
+
+
+
+// ########### ESTAMPAS ROTAS
+router.get("/estampas/temas", async (req, res) => {
+    const temasList = await Temas.findAll();
+    const temas = [];
+    temasList.forEach(tema => {
+        temas.push(tema.dataValues);
+    })
+    res.render("estampas/temas", {temas})
+})
+router.get("/estampas/:tema", async (req, res) => {
+    const tema = req.params.tema
+    const estampasList = await Estampas.findAll({where: {tema: tema}});
+    const estampas = []
+    estampasList.forEach(estampa => {
+        estampas.push(estampa.dataValues)
+    })
+    res.render("estampas/estampas", {tema, estampas})
 })
 
 module.exports = router

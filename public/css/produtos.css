@@ -95,6 +95,37 @@
     margin: 0px;
 }
 
+/*########## ESTAMPAS CLIENT ##########*/
+.card-client-estampa{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+}
+h3#numero{
+   align-self: flex-start;
+   margin: 5px;
+}
+.card-client-estampa img {
+    max-width: 280px;
+    max-height: 200px;
+    border-radius: 10px;
+}
+.card-client-estampa .dados{
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    width: 90%;
+}
+
+
 
 /*TODOS OS PRODUTOS - ADM SECTION*/
 .adm {

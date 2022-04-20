@@ -1,0 +1,17 @@
+<section class="produtos-page">
+    <a class="title" href="temas">
+        <span class="material-icons">&#xe408;</span>
+        {{tema}}
+    </a>
+    <section class="produtos-cards">
+        {{#each estampas}}
+        <div class="card-client-estampa">
+            <h3 id="numero">Nº {{idEstampa}}</h3>
+            <img src="{{imageUrl}}" alt="">
+            <div class="dados">
+                <p>{{descricao}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </section>
+</section>
