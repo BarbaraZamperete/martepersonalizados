@@ -1,10 +1,10 @@
 ## O que está sendo feito
-
+- página de produtos
 ## O que falta fazer
 
 - editar estampa
 
-- página de produtos
+
 - página de cada modelo de produto
 - página de temas de estampa
 - pagina de estampas por modelo

@@ -12,9 +12,13 @@
 
 .produtos-page .title{
     align-self: flex-start;
+    display: flex;
+    align-items: center;
     width: 50%;
     margin: auto;
     font-size: 26px;
+    text-decoration: none;
+    color: black;
 }
 
 .produtos-cards{
@@ -31,6 +35,7 @@
     text-align: center;
     margin: 20px;
     flex-wrap: wrap;
+    cursor: pointer;
 }
 .produto-nome{
     font-size: 26px;
@@ -41,6 +46,9 @@
     height: 150px;
     border-radius: 15px;
     margin-bottom: 10px;
+}
+.img-produto img{
+    height: inherit;
 }
 
 

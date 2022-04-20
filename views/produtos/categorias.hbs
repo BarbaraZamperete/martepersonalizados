@@ -1,0 +1,18 @@
+<section class="produtos-page">
+    <a class="title" href="../">
+        <span class="material-icons">&#xe408;</span> 
+        Produtos
+    </a>
+    <section class="produtos-cards">
+        {{#each categorias}}
+        <a class="produto" href="/produtos/{{nome}}">
+            <div class="img-produto"><img src="/uploads/{{imageUrl}}" alt=""></div>
+            <div class="produto-nome">{{nome}}</div>
+        </a>
+        {{/each}}
+        {{!-- <a class="produto">
+            <div class="img-produto"><img src="" alt=""></div>
+            <div class="produto-nome">Nome</div>
+        </a> --}}
+    </section>
+</section>
