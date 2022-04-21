@@ -45,11 +45,14 @@
     background-color: whitesmoke;
     width: 150px;
     height: 150px;
+    max-width: 150px;
+    max-height: 150px;
     border-radius: 15px;
     margin-bottom: 10px;
 }
 .img-produto img{
-    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
 }
 
 
