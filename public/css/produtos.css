@@ -51,8 +51,11 @@
     margin-bottom: 10px;
     justify-items: center;
     align-content: center;
+<<<<<<< HEAD
     align-items: center;
     justify-content: center;
+=======
+>>>>>>> 78cbf683b809f184a6c7ee3f74e9b1c8112df747
 }
 .img-produto img{
     max-width: inherit;
