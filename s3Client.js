@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const fs = require('fs');
-const { param } = require('./routes/adm.routes');
+
 
 async function uploadFile(fileName, filePath, mimeType) {
     const s3 = new AWS.S3({ apiVersion: '2006-03-01', region: process.env.AWS_REGION });
