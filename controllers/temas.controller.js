@@ -41,7 +41,6 @@ temasCtrl.adicionarTema = async (req, res) => {
             nome: nome,
             imageUrl: url,
         })
-        console.log(tema)
         req.flash("success_msg", "Tema adicionado")
     }
     res.redirect('/adm/add')
@@ -59,7 +58,6 @@ temasCtrl.excluirTema = async (req, res) => {
     } else {
         try {
             fs.unlinkSync("public/uploads/" + tema.imageUrl)
-            console.log("sucesso")
         } catch (err) {
             console.log(err + " erro ")
         }
@@ -68,8 +66,7 @@ temasCtrl.excluirTema = async (req, res) => {
         where: {
             idTemas: req.params.id
         }
-    });
-    console.log(destruir)
+    })
     req.flash("success_msg", "Tema removido")
     res.redirect("/adm/temas")
 }

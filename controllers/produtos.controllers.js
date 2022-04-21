@@ -43,12 +43,10 @@ produtosCtrl.adicionarProduto = async (req, res) => {
             });
             req.flash("success_msg", "Produto adicionado")
         } else {
-            console.log("selecione uma categoria para o produto")
             req.flash("alert_msg", "Selecione uma categoria para o produto")
         }
 
     } else {
-        console.log("preencha todos os dados")
         req.flash("alert_msg", "Preencha todos os dados")
     }
     res.redirect('/adm/add')
@@ -62,13 +60,11 @@ produtosCtrl.excluirProduto = async (req, res) => {
     } else {
         try {
             fs.unlinkSync("public/uploads/" + produto.imageUrl)
-            console.log("sucesso")
         } catch (err) {
             console.log(err + " erro ")
         }
     }
     const destruir = await Produtos.destroy({ where: { idProduto: req.params.id } });
-    console.log(destruir)
     req.flash("success_msg", "Produto removido")
     res.redirect("/adm/produtos")
 }
@@ -80,21 +76,18 @@ produtosCtrl.editarProdutoPage = async (req, res) => {
         categorias.push(categoria.dataValues);
     })
     const produtoCru = await Produtos.findOne({ where: { idProduto: req.params.id } })
-    console.log(produtoCru + "teste")
     if (produtoCru) {
         const produto = produtoCru.dataValues
         res.render("adm/edit-page", { produto, categorias });
-    }else{
+    } else {
         res.render("adm/edit-page", { categorias });
     }
 }
 
 produtosCtrl.editarProdutoAction = async (req, res) => {
-    // console.log(req.body)
     const id = req.params.id
     const { nome, preco, descricao } = req.body
     const update = await Produtos.update({ nome: nome, preco: preco, descricao: descricao }, { where: { idProduto: id } })
-    console.log(update)
     req.flash("success_msg", "Produto atualizado")
     res.redirect("/adm/produtos")
 

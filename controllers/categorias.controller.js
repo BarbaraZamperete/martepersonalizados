@@ -61,7 +61,6 @@ categoriasCtrl.excluirCategoria =  async (req, res) => {
     } else {
         try {
             fs.unlinkSync("public/uploads/" + categoria.imageUrl)
-            console.log("sucesso")
             req.flash("success_msg", "Categoria removida")
         } catch (err) {
             console.log(err + " erro ")

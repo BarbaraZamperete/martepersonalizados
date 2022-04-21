@@ -47,11 +47,9 @@ estampasCtrl.adicionarEstampa = async (req, res) => {
             });
             req.flash("success_msg", "Estampa adicionada")
         } else {
-            console.log("insira um tema")
             req.flash("alert_msg", "Escolha um Tema")
         }
     } else {
-        console.log("preencha todos os dados")
         req.flash("alert_msg", "Preencha todos os dados")
     }
     res.redirect('/adm/add')
@@ -70,7 +68,6 @@ estampasCtrl.excluirEstampa =  async (req, res) => {
     } else {
         try {
             fs.unlinkSync("public/uploads/" + estampa.imageUrl)
-            console.log("sucesso")
         } catch (err) {
             console.log(err + " erro ")
         }
@@ -80,7 +77,6 @@ estampasCtrl.excluirEstampa =  async (req, res) => {
             idEstampa: req.params.id
         }
     });
-    console.log(destruir)
     req.flash("success_msg", "Estampa removida")
     res.redirect("/adm/estampas")
 }
