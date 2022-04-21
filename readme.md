@@ -15,6 +15,9 @@
 
 - QRcode e link do PIX
 
+- pagina de "site em manuntenção"
+- separar as imagens por pasta no AWS S3
+
 - editar estampa
 - adiconar usuário
 - alterar senha
