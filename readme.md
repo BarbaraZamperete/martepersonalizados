@@ -13,6 +13,8 @@
 - pensar numa forma de busca por estampa
 - separar estampas por tema na area de adm
 
+- QRcode e link do PIX
+
 - editar estampa
 - adiconar usuário
 - alterar senha
