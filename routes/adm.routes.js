@@ -2,36 +2,25 @@ const {
     Router
 } = require('express');
 const router = Router();
-const multer = require('multer')
-const db = require('../models/db')
-const path = require('path');
 const Produtos = require("../models/Produtos")
 const Estampas = require("../models/Estampas")
 const Categorias = require("../models/Categorias")
 const Temas = require("../models/Temas")
 const s3Client = require("../s3Client");
-const { route } = require('express/lib/application');
-const { contentDisposition } = require('express/lib/utils');
 const fs = require('fs')
 require("dotenv").config();
 const passport = require('passport');
 const {
     isAuthenticated
 } = require('../helpers/auth');
+const upload = require("../config/multer")
 
-//! Use of Multer
-var storage = multer.diskStorage({
-    destination: (req, file, callBack) => {
-        callBack(null, './public/uploads/')     // './public/images/' directory name where save the file
-    },
-    filename: (req, file, callBack) => {
-        callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-    }
+
+router.get("/adm", (req, res) => {
+    res.redirect("/adm/add")
 })
 
-var upload = multer({
-    storage: storage
-});
+
 
 // ###### ################ GETS ###################
 
