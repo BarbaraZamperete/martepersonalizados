@@ -49,10 +49,9 @@
     max-height: 150px;
     border-radius: 15px;
     margin-bottom: 10px;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 .img-produto img{
     max-width: inherit;
@@ -97,6 +96,7 @@
     position: absolute;
     right: 0px;
     bottom: 0px;
+    width: -moz-fit-content;
     width: fit-content;
     height: fit-content;
     margin: 0px;
@@ -222,6 +222,7 @@ h3#numero{
 .img-edit{
     max-height: 200px;
     max-width: 200px;
+    width: -moz-fit-content;
     width: fit-content;
     height: fit-content;
     image-rendering: optimizeSpeed;

@@ -6,7 +6,7 @@
             <label for="nome" >Nome:</label>
             <input type="text" placeholder="Ex: Caneca de vidro" name="nome" required>
             <label for="categoria"  >Categoria:</label>
-            <select name="categoria">
+            <select name="categoria" title="selecione uma categoria">
                 <option value="null">Selecione</option>
                 {{#each categorias}}
                 <option value="{{nome}}">{{nome}}</option>
@@ -15,9 +15,9 @@
             <label for="preco">Preço:</label>
             <input type="text" placeholder="Ex: 30,50" name="preco" required>
             <label for="descricao">Descrição:</label>
-            <textarea name="descricao" id="" cols="10" rows="10" ></textarea>
+            <textarea name="descricao" id="descricao" title="descricao" cols="10" rows="10" ></textarea>
             <label for="image">Imagem:</label>
-            <input type="file" name="image" id="" required>
+            <input type="file" name="image" title="image" id="" required>
             <input type="submit" value="Adicionar Produto">
         </form>
     </div>
@@ -25,7 +25,7 @@
         <h4>Adicionar Nova Estampa</h4>
         <form action="/adm/add/estampa" method="post"  enctype="multipart/form-data">
             <label for="tema">Tema:</label>
-            <select name="tema">
+            <select name="tema" title="selecione um tema">
                 <option value="null">Selecione</option>
                 {{#each temas}}
                 <option value="{{nome}}">{{nome}}</option>
