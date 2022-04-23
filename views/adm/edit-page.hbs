@@ -4,12 +4,12 @@
         <h4>Editar Produto</h4>
         <form action="/adm/edit/{{produto.idProduto}}" method="post">
             <label for="nome">Nome: </label>
-            <input type="text" value="{{produto.nome}}" name="nome" id="">
+            <input type="text" value="{{produto.nome}}" required name="nome" id="">
             <label for="categoria">Categoria: {{produto.categoria}}</label>
             <label for="preco">Preço:</label>
             <input value="{{produto.preco}}" type="text" placeholder="Ex: 30,50" name="preco" required>
             <label for="descricao">Descrição:</label>
-            <textarea name="descricao" id="" cols="30" rows="10"> {{produto.descricao}}</textarea>
+            <textarea name="descricao" maxlength="55" id="" cols="30" rows="10"> {{produto.descricao}}</textarea>
             <label for="image">Imagem:</label>
             <img class="img-edit" src="{{produto.imageUrl}}" alt="{{produto.nome}}" title="{{produto.nome}}">
             <input type="submit" value="Salvar Alterações">

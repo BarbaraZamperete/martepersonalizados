@@ -62,11 +62,13 @@
 /*   PRODUTOS CLIENT SECTION  */
 .card-client{
     display: flex;
+    justify-content: space-around;
     border: 2px solid #555;
     border-radius: 10px;
     padding: 5px;
     margin: 10px;
     align-items: center;
+    min-width: 350px;
     max-width: calc(100vw - 20px);
     height: 150px;
 }
@@ -235,5 +237,8 @@ h3#numero{
 @media only screen and (max-width: 600px) {
     .produtos-page .title{
         width: 90%;
+    }
+    .card-client {
+        width: calc(100vw - 20px);
     }
 }
