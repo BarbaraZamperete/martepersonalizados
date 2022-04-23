@@ -34,7 +34,7 @@
     text-decoration: none;
     color: black;
     text-align: center;
-    margin: 20px;
+    margin: 10px;
     flex-wrap: wrap;
     cursor: pointer;
 }
@@ -52,10 +52,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .img-produto img{
     max-width: inherit;
     max-height: inherit;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #aaa;
 }
 
 
