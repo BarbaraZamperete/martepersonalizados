@@ -68,6 +68,7 @@
     margin: 10px;
     align-items: center;
     max-width: calc(100vw - 20px);
+    height: 150px;
 }
 .card-client img{
     height: 120px;
