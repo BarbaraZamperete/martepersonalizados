@@ -37,6 +37,7 @@
     margin: 10px;
     flex-wrap: wrap;
     cursor: pointer;
+    max-width: 150px;
 }
 .produto-nome{
     font-size: 26px;
