@@ -38,6 +38,7 @@
     flex-wrap: wrap;
     cursor: pointer;
     max-width: 150px;
+    height: 230px;
 }
 .produto-nome{
     font-size: 26px;
