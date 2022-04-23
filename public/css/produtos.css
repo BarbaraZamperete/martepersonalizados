@@ -74,10 +74,10 @@
     align-items: center;
     min-width: 350px;
     max-width: calc(100vw - 20px);
-    height: 150px;
+    height: 160px;
 }
 .card-client img{
-    height: 120px;
+    height: fit-content;
     max-width: 120px;
     border-radius: 10px;
 }
@@ -88,17 +88,40 @@
     flex-wrap: wrap;
     padding-left: 15px;
     height: 100%;
+    position: relative;
 }
 .card-client #titulo{
     text-transform: uppercase;
     margin: 5px;
+    margin-bottom: 0px;
     flex: 0.2
 }
 .card-client .subdados{
+    margin-top: 0px;
+    padding-top: 0px;
     flex: 0.8;
     display: flex;
     position: relative;
     justify-content: space-between;
+}
+.card-client .encomendar{
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+    background-color: #29a71a;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 2px 5px 2px 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.encomendar img{
+    height: 20px;
+    margin-right: 3px;
+    border-radius: 0px;
 }
 .card-client #preco{
     position: absolute;
