@@ -7,7 +7,7 @@
 - botão de pedir tal produto pelo wpp
 
 - editar imagem do produto
-- trocar numero do whatsapp
+
 - pré visualizar imagem adicionada (produtos, estampas, temas e categorias)
 
 - pensar numa forma de busca por estampa
@@ -49,3 +49,4 @@
 - logout
 - criptografar senha
 - proteger rotas
+- trocar numero do whatsapp
