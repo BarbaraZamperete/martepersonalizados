@@ -50,6 +50,15 @@
     cursor: pointer;
 }
 
+.pre-img{
+    margin-top: 10px;
+    background-color: white;
+    height: 100px;
+    width: fit-content;
+    border-radius: 10px;
+    align-self: center;
+}
+
 
 
 /*########################## LOGIN #######################*/

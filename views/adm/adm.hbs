@@ -44,7 +44,8 @@
             <label for="nome">Nome:</label>
             <input type="text" maxlength="30" required placeholder="Ex: Canecas" name="nome">
             <label for="image">Imagem:</label>
-            <input type="file" name="image" id="" required>
+            <input type="file" name="image" id="img-cat" required>
+            <img class="pre-img" src="#" alt="" id="pre-cat">
             <input type="submit" value="Adicionar Categoria">
         </form>
         <br>
@@ -55,7 +56,8 @@
             <label for="nome">Nome:</label>
             <input type="text" maxlength="30" required placeholder="Ex: Canecas" name="nome">
             <label for="image">Imagem:</label>
-            <input type="file" name="image" id="" required>
+            <input type="file" name="image" id="img-tema" required>
+            <img class="pre-img" src="#" alt="" id="pre-tema">
             <input type="submit" value="Adicionar Tema">
         </form>
     </div>
@@ -71,4 +73,27 @@
     estampa.classList.remove("ativo")
     tema.classList.remove("ativo")
     categoria.classList.remove("ativo")
+
+
+    const imgTema = document.getElementById("img-tema")
+    const preTema = document.getElementById("pre-tema")
+    preTema.style.display = "none"
+    imgTema.addEventListener("change", ()=>{
+        preTema.style.display = "flex"
+        const [file] = imgTema.files
+        if(file){
+            preTema.src = URL.createObjectURL(file)
+        }
+    })
+
+    const imgCat = document.getElementById("img-cat")
+    const preCat = document.getElementById("pre-cat")
+    preCat.style.display = "none"
+    imgCat.addEventListener("change", ()=>{
+        preCat.style.display = "flex"
+        const [file] = imgCat.files
+        if(file){
+            preCat.src = URL.createObjectURL(file)
+        }
+    })
 </script>

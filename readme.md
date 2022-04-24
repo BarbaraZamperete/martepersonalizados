@@ -1,14 +1,11 @@
 ## O que está sendo feito
+- pré visualizar imagem adicionada (produtos, estampas, temas e categorias)
 
 ## O que falta fazer
 - corrigir erros do browser
 - entender pq o chrome alerta como site não seguro
 
-- botão de pedir tal produto pelo wpp
-
 - editar imagem do produto
-
-- pré visualizar imagem adicionada (produtos, estampas, temas e categorias)
 
 - pensar numa forma de busca por estampa
 - separar estampas por tema na area de adm
@@ -50,3 +47,4 @@
 - criptografar senha
 - proteger rotas
 - trocar numero do whatsapp
+- botão de pedir tal produto pelo wpp
