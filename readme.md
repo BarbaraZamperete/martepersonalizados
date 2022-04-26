@@ -1,11 +1,11 @@
 ## O que está sendo feito
-
+- editar imagem do produto
 
 ## O que falta fazer
 - corrigir erros do browser
 - entender pq o chrome alerta como site não seguro
 
-- editar imagem do produto
+
 
 - pensar numa forma de busca por estampa
 - separar estampas por tema na area de adm
