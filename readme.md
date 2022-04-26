@@ -1,5 +1,5 @@
 ## O que está sendo feito
-- pré visualizar imagem adicionada (produtos, estampas, temas e categorias)
+
 
 ## O que falta fazer
 - corrigir erros do browser
@@ -48,3 +48,4 @@
 - proteger rotas
 - trocar numero do whatsapp
 - botão de pedir tal produto pelo wpp
+- pré visualizar imagem adicionada (produtos, estampas, temas e categorias)

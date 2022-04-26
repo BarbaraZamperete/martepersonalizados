@@ -17,7 +17,8 @@
             <label for="descricao">Descrição:</label>
             <textarea name="descricao" maxlength="55" id="descricao" title="descricao" cols="10" rows="10" ></textarea>
             <label for="image">Imagem:</label>
-            <input type="file" name="image" title="image" id="" required>
+            <input type="file" name="image" id="img-prod" required>
+            <img class="pre-img" src="#" alt="" id="pre-prod">
             <input type="submit" value="Adicionar Produto">
         </form>
     </div>
@@ -34,7 +35,8 @@
             <label for="descricao">Descrição:</label>
             <textarea name="descricao" maxlength="55" id="" cols="10" rows="10" ></textarea>
             <label for="image">Imagem:</label>
-            <input type="file" name="image" id="" required>
+            <input type="file" name="image" id="img-estampa" required>
+            <img class="pre-img" src="#" alt="" id="pre-estampa">
             <input type="submit" value="Adicionar Estampa">
         </form>
     </div>
@@ -94,6 +96,28 @@
         const [file] = imgCat.files
         if(file){
             preCat.src = URL.createObjectURL(file)
+        }
+    })
+
+    const imgEst = document.getElementById("img-estampa")
+    const preEst = document.getElementById("pre-estampa")
+    preEst.style.display = "none"
+    imgEst.addEventListener("change", ()=>{
+        preEst.style.display = "flex"
+        const [file] = imgEst.files
+        if(file){
+            preEst.src = URL.createObjectURL(file)
+        }
+    })
+
+    const imgProd = document.getElementById("img-prod")
+    const preProd = document.getElementById("pre-prod")
+    preProd.style.display = "none"
+    imgProd.addEventListener("change", ()=>{
+        preProd.style.display = "flex"
+        const [file] = imgProd.files
+        if(file){
+            preProd.src = URL.createObjectURL(file)
         }
     })
 </script>
